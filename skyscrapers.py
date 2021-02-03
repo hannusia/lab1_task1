@@ -25,7 +25,12 @@ def left_to_right_check(input_line: str, pivot: int):
     >>> left_to_right_check("452453*", 5)
     False
     """
-    pass
+    line = list(input_line)
+    print(line)
+    for i in range(1, pivot):
+        if int(line[i]) >= int(line[pivot]):
+            return False
+    return True
 
 
 def check_not_finished_board(board: list):
@@ -41,7 +46,10 @@ def check_not_finished_board(board: list):
     >>> check_not_finished_board(['***21**', '412453*', '423145*', '*5?3215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    pass
+    board = list(board)
+    if '?' in board:
+        return True
+    return False
 
 
 def check_uniqueness_in_rows(board: list):
