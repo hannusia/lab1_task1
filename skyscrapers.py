@@ -135,7 +135,8 @@ def check_skyscrapers(input_path: str):
     >>> check_skyscrapers("check.txt")
     True
     """
-    pass
+    board = read_input(input_path)
+    return check_not_finished_board(board) and check_uniqueness_in_rows(board) and check_horizontal_visibility(board) and check_columns(board)
 
 
 if __name__ == "__main__":
