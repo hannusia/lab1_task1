@@ -10,7 +10,6 @@ def read_input(path: str):
     return board
 
 
-
 def left_to_right_check(input_line: str, pivot: int):
     """
     Check row-wise visibility from left to right.
@@ -26,7 +25,6 @@ def left_to_right_check(input_line: str, pivot: int):
     False
     """
     line = list(input_line)
-    print(line)
     for i in range(1, pivot):
         if int(line[i]) >= int(line[pivot]):
             return False
@@ -65,7 +63,15 @@ def check_uniqueness_in_rows(board: list):
     >>> check_uniqueness_in_rows(['***21**', '412453*', '423145*', '*553215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    pass
+    board = board[1:-1]
+    for i in board:
+        i = list(i[1:-1])
+        for n in range(len(i)):
+            for m in range(n+1, len(i)):
+                if i[n] == i[m]:
+                    print(i)
+                    return False
+    return True
 
 
 def check_horizontal_visibility(board: list):
@@ -83,7 +89,22 @@ def check_horizontal_visibility(board: list):
     >>> check_horizontal_visibility(['***21**', '452413*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    pass
+    for i in board[1:-1]:
+        if i[0] != '*':
+            hint = int(i[0])
+            for j in range(1, len(i) - 1):
+                if left_to_right_check(i, j):
+                    hint -= 1
+            if hint != 0:
+                return False
+        elif i[-1] != '*':
+            hint = int(i[-1])
+            for j in range(1, len(i) - 1):
+                if left_to_right_check(i[::-1], j):
+                    hint -= 1
+            if hint != 0:
+                return False
+    return True
 
 
 def check_columns(board: list):
