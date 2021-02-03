@@ -46,8 +46,8 @@ def check_not_finished_board(board: list):
     """
     board = list(board)
     if '?' in board:
-        return True
-    return False
+        return False
+    return True
 
 
 def check_uniqueness_in_rows(board: list):
@@ -120,8 +120,11 @@ def check_columns(board: list):
     >>> check_columns(['***21**', '412553*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    pass
-
+    new_board = ['' for i in range(len(board))]
+    for j in range(len(board)):
+        for i in board:
+            new_board[j] += i[j]
+    return check_not_finished_board(new_board) and check_uniqueness_in_rows(new_board) and check_horizontal_visibility(new_board)
 
 def check_skyscrapers(input_path: str):
     """
