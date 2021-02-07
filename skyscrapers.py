@@ -1,3 +1,6 @@
+"""
+This module contains functions to check if board for skyscrapers is valid.
+"""
 def read_input(path: str):
     """
     Read game board file from path.
